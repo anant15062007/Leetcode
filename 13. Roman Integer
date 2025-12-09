@@ -115,4 +115,36 @@ class Solution:
         return(sum)
 
 
+#####################################################################################################################
 
+
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+
+        sum = 0
+        s_input = s
+        s_input_list = []
+        s_input = s_input.replace("IV", "IIII")
+        s_input = s_input.replace("IX", "VIIII")
+        s_input = s_input.replace("XL", "XXXX")
+        s_input = s_input.replace("XC", "LXXXX")
+        s_input = s_input.replace("CD", "CCCC")
+        s_input = s_input.replace("CM", "DCCCC")
+        l = len(s_input)
+        for n in s_input:
+            s_input_list.append(n)
+
+        romanDict = {
+            "I" : 1,
+            "V" : 5,
+            "X" : 10,
+            "L" : 50,
+            "C" : 100,
+            "D" : 500,
+            "M" : 1000
+        }
+
+        for i in range(l):
+            sum = sum + romanDict[s_input[i]]
+        return sum
