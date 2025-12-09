@@ -1,0 +1,17 @@
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+    x = str(x)
+        number_list = []
+        for j in x:
+            number_list.append(j)
+        n = len(number_list)
+
+        counter = 0
+        for i in range(n-1):
+            if number_list[i] == number_list[n-1-i]:
+                counter += 1
+            else:
+                return(False)
+                break
+        if counter == n-1:
+            return(True)
