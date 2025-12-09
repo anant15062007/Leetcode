@@ -1,0 +1,118 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        
+        sum = 0
+        s_input = s
+        s_input_list = []
+        s_items = [
+            {
+                "Roman Literal": "I",
+                "Integer Value": 1
+            },
+            {
+                "Roman Literal": "V",
+                "Integer Value": 5
+            },
+            {
+                "Roman Literal": "X",
+                "Integer Value": 10
+            },
+            {
+                "Roman Literal": "L",
+                "Integer Value": 50
+            },
+            {
+                "Roman Literal": "C",
+                "Integer Value": 100
+            },
+            {
+                "Roman Literal": "D",
+                "Integer Value": 500
+            },
+            {
+                "Roman Literal": "M",
+                "Integer Value": 1000
+            },
+            {
+                "Roman Literal": "a",
+                "Integer Value": 4
+            },
+            {
+                "Roman Literal": "b",
+                "Integer Value": 9
+            },
+            {
+                "Roman Literal": "e",
+                "Integer Value": 40
+            },
+            {
+                "Roman Literal": "f",
+                "Integer Value": 90
+            },
+            {
+                "Roman Literal": "g",
+                "Integer Value": 400
+            },
+            {
+                "Roman Literal": "h",
+                "Integer Value": 900
+            }
+        ]
+
+        s_subtract_items = [
+            {
+                "Roman Literal": "IV",
+                "Replace With" : "a",
+                "Integer Value": 4
+            },
+            {
+                "Roman Literal": "IX",
+                "Replace With" : "b",
+                "Integer Value": 9
+            },
+            {
+                "Roman Literal": "XL",
+                "Replace With" : "e",
+                "Integer Value": 40
+            },
+            {
+                "Roman Literal": "XC",
+                "Replace With" : "f",
+                "Integer Value": 90
+            },
+            {
+                "Roman Literal": "CD",
+                "Replace With" : "g",
+                "Integer Value": 400
+            },
+            {
+                "Roman Literal": "CM",
+                "Replace With" : "h",
+                "Integer Value": 900
+            }
+        ]
+
+
+        for i in range(0,6):
+            if s_subtract_items[i].get("Roman Literal") in s_input:
+                # print(s_subtract_items[i].get("Roman Literal"))
+                # s_input.replace("IV", "a")
+                s_input = s_input.replace(s_subtract_items[i].get("Roman Literal"), s_subtract_items[i].get("Replace With"))
+            else:
+                continue
+        
+        for l in s_input:
+            s_input_list.append(l)
+        
+        n = len(s_input_list)
+        
+        for k in range(0,n):
+            for z in range(0,13):
+                if s_input_list[k] == s_items[z].get("Roman Literal"):
+                    sum = sum + s_items[z].get("Integer Value")
+                else:
+                    continue
+        return(sum)
+
+
+
