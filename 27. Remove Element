@@ -1,0 +1,16 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        
+        n = len(nums)
+        new = []
+
+        for i in range(n):
+            if nums[i] not in new:
+                new.append(nums[i])
+            else:
+                continue
+
+        nums.clear()
+
+        for j in new:
+            nums.append(j)
