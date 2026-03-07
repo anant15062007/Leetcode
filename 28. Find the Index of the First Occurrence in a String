@@ -2,9 +2,20 @@ class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
         
         index = -1
+        h = len(haystack)
+        n = len(needle)
+        counter = 0
 
-        for i in range(len(haystack)):
-            for j in range(len(needle)):
-                if needle[j]!=haystack[i+j]:
-                    return index
-            return i
+        for i in range(h-n):
+            for j in range(n):
+                if needle[j]==haystack[i+j]:
+                    counter=counter+1
+                    if counter==n:
+                        return i
+                    else:
+                        index = i
+                        continue
+                else:
+                    index = -1
+                    break
+        return index
