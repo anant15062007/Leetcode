@@ -1,0 +1,10 @@
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        
+        index = -1
+
+        for i in range(len(haystack)):
+            for j in range(len(needle)):
+                if needle[j]!=haystack[i+j]:
+                    return index
+            return i
