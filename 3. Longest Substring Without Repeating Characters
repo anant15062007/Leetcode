@@ -1,0 +1,52 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        
+        longest = 0
+        i = 0
+        
+
+        def longest(i: int) -> int:
+            print("In iteration = ", i)
+            unique_str = []
+            length_1 = 0
+            length_2 = 0
+            for letter in s[i:]:
+                if letter not in unique_str:
+                    unique_str.append(letter)
+                    length_1 = len(unique_str)
+                    print("Length 1 = ", length_1)
+
+                else:
+                    i = i+1
+                    if i<len(s):
+                        length_2 = longest(i)
+                        print("Length 2 = ", length_2)
+                    break
+
+            if length_1>=length_2:
+                return length_1
+            else:
+                return length_2
+                        
+            
+
+        return(longest(0))
+        
+
+
+        # unique_str = []
+        # longest = 0
+        
+        # print(s[0:])
+        
+        # for i in range(len(s)):
+        #     unique_str = []
+        #     for letter in s[i:]:
+        #         if letter not in unique_str:
+        #             unique_str.append(letter)
+        #         else:
+        #             break
+        #     if len(unique_str)>longest:
+        #         longest = len(unique_str)
+
+        # return longest
