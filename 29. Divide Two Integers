@@ -1,0 +1,13 @@
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        
+        sol = dividend/divisor
+        print(sol)
+
+        if sol % 1 != 0:
+            x = int(sol)
+            return x
+        elif dividend == -2147483648 and divisor == -1:
+            return 2147483647
+        else:
+            return int(sol)
