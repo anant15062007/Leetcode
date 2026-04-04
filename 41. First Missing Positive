@@ -1,0 +1,24 @@
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        
+        if 1<=len(nums)<=10**5:
+            new = []
+            for i in nums:
+                if i>0:
+                    new.append(i)
+
+            largest = max(new,default=0)
+            smallest = min(new,default=0)
+            print(new)
+            print(largest)
+            print(smallest)
+
+            if smallest==1:
+                for i in range(smallest,largest+1):
+                    if i not in new:
+                        return i
+                return largest+1
+            else:
+                return 1
+        else:
+            return 0
