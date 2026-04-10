@@ -1,0 +1,19 @@
+class Solution:
+    def kLengthApart(self, nums: List[int], k: int) -> bool:
+        
+        index = []
+        diff = []
+        for i in range(len(nums)):
+            if nums[i]==1:
+                index.append(i)
+        
+        for j in range(len(index) - 1):
+            val = index[j+1] - index[j] - 1
+            diff.append(val)
+
+        print(index)
+        print(diff)
+        for a in diff:
+            if a <k:
+                return False
+        return True
