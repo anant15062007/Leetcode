@@ -1,47 +1,42 @@
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
+
+        count_of_one = 0
+        count_of_non_one = 0
+
+        for i in nums:
+            if i==1:
+                count_of_one += 1
+            else:
+                count_of_non_one += 1
+
+        if count_of_one>0:
+            return count_of_non_one
         
-        # i = 0
-        # n = len(nums)
-        # count = 0
-        # for i in range(n-1):
-        #     print("In for", i)
-        #     if math.gcd(nums[i], nums[i+1]) == 1:
-        #         print("In if", count)
-        #         count += 1
-        #         nums[i+1] = 1
-        # return -1
+        list_of_subarray = []
 
-
-
-        n = len(nums)
-        count = 0
-        i = 0
-        
-        if all(x == 1 for x in nums):
-            return 0
-
-        while i < n - 1:
-            if math.gcd(nums[i], nums[i+1]) == 1:
-                if nums[i] == 1 and nums[i+1] == 1:
-                    i += 1
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums) + 1):
+                if len(nums[i:j]) < 2:
                     continue
-                if nums[i] == 1:
-                    nums[i+1] = 1
                 else:
-                    nums[i] = 1
-                    
-                count += 1
-                
-                if all(x == 1 for x in nums):
-                    return count
-                i = 0 
-                continue
-            elif i + 2 < n and math.gcd(nums[i], nums[i+1], nums[i+2])==1:
-                nums[i+1]=math.gcd(nums[i], nums[i+1])
-                count += 1
-                i = 0
-                continue
-            i += 1
+                    list_of_subarray.append(nums[i:j])
 
-        return -1
+        print(list_of_subarray)
+        shortest_len = 100
+        shortest_subarray = []
+
+        for subarray in list_of_subarray:
+            if math.gcd(*subarray)==1:
+                if len(subarray)<shortest_len:
+                    shortest_len = len(subarray)
+                    shortest_subarray = subarray
+        
+        print(shortest_subarray)
+        print(shortest_len)
+
+
+        if shortest_len == 100:
+            return -1
+        else:
+            return len(nums)+shortest_len-2
