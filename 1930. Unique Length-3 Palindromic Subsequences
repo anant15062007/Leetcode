@@ -1,0 +1,19 @@
+class Solution:
+    def countPalindromicSubsequence(self, s: str) -> int:
+        
+        final = []
+
+        for i in range(len(s)):
+            for j in range(i+1, len(s)):
+                for k in range(j+1, len(s)):
+                    temp = [s[i], s[j], s[k]]
+                    if temp == temp[::-1]:
+                        final.append(temp)
+        
+        unique_data = []
+        for sublist in final:
+            if sublist not in unique_data:
+                unique_data.append(sublist)
+        
+
+        return len(unique_data)
