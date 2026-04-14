@@ -1,0 +1,19 @@
+class Solution:
+    def prefixesDivBy5(self, nums: List[int]) -> List[bool]:
+        
+        total = 0
+        n = len(nums)
+        tf = []
+
+        for i in range(n):
+            total = total + nums[i]*(2**(n-1-i))
+
+
+        for j in range(n):
+            if total%5==0 or total==0:
+                tf.append(True)
+            else:
+                tf.append(False)
+            total = total - nums[n-1-j]*(2**(j))
+
+        return tf[::-1]
