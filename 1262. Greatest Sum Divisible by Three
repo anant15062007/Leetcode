@@ -1,0 +1,43 @@
+class Solution:
+    def maxSumDivThree(self, nums: List[int]) -> int:
+        
+        sum = 0
+        copy = 0
+        nums.sort()
+        #print(nums)
+        n = len(nums)
+
+        if n<1 or 4*(10**4)<n:
+            return 0
+        
+        for i in range(n):
+            sum = sum + nums[i]
+        copy = sum
+
+        print(sum)
+
+        while copy%3!=0:
+            copy-=1
+        print(copy)
+        print(nums)
+
+        i = 0
+        diff = sum - copy
+
+        if diff == 0:
+            return copy
+
+        while copy >= 0:
+            diff = sum - copy
+            print(diff)
+            for j in range(min(n, 10)):
+                for k in range(j+1, min(n, 10)):
+                    print(j)
+                    print(k)
+                    if nums[j] == diff or nums[k] == diff:
+                        return copy
+                    if nums[j] + nums[k] == diff:
+                        return copy
+            copy = copy-3
+            print(copy)
+        return 0
