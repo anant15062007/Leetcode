@@ -1,0 +1,10 @@
+class Solution:
+    def mirrorDistance(self, n: int) -> int:
+        
+        num = list(map(int, str(n)))
+        reverse = 0
+
+        for i in range(len(num)):
+            reverse += num[i]*(10**i)
+
+        return abs(n-reverse)
