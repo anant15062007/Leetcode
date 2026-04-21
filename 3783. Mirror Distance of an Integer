@@ -8,3 +8,12 @@ class Solution:
             reverse += num[i]*(10**i)
 
         return abs(n-reverse)
+
+
+########################################################################################################################################################################
+
+
+class Solution:
+    def mirrorDistance(self, n: int) -> int:
+        
+        return abs(n - int(str(n)[::-1]))
