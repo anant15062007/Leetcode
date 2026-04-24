@@ -1,0 +1,27 @@
+class Solution:
+    def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
+        
+        min_value = 1000
+        index = 0
+        robot_factory = []
+        for i in range(len(robot)):
+            print("i", i)
+            min_value = 1000
+            index = 0
+            for j in range(len(factory)):
+                current_min = abs(factory[j][0]-robot[i])
+                print("current min", current_min)
+                print("factory[j][1]", factory[j][1])
+                if current_min < min_value and factory[j][1]>0:
+                    min_value = current_min
+                    index = j
+            factory[index][1]-=1
+            robot_factory.append(min_value)
+            print("min_value", min_value)
+
+        print(robot_factory)
+        sum = 0
+        for k in robot_factory:
+            sum += k
+
+        return sum
