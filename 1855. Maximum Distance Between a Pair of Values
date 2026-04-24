@@ -1,0 +1,16 @@
+class Solution:
+    def maxDistance(self, nums1: List[int], nums2: List[int]) -> int:
+        
+        pairs = []
+        max = 0
+
+        for i in range(len(nums1)):
+            for j in range(len(nums2)):
+                if i<=j and nums1[i]<=nums2[j] and j-i>max:
+                    max = j-i
+                    pairs.append([i,j])
+        print(pairs)
+        if len(pairs)!=0:
+            return pairs[-1][1]-pairs[-1][0]
+        else:
+            return 0
