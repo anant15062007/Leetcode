@@ -1,0 +1,27 @@
+class Solution:
+    def minMirrorPairDistance(self, nums: List[int]) -> int:
+        
+        def reverse(self, num: int) -> int:
+            rev = int(str(num)[::-1])
+            return rev
+
+        dist_min = 100
+
+        for i in range(len(nums)):
+            print("i", i)
+            if reverse(self, nums[i]) in nums[:i] + nums[i+1:]:
+                print("In if")
+                target_val = reverse(self, nums[i])
+                idx = next(index for index, value in enumerate(nums) if value == target_val and index != i)
+                if reverse(self, nums[i])==nums[idx] and reverse(self, nums[idx])!=nums[i] and i>idx:
+                    return idx-i
+                if idx-i!=0:
+                    print("Prev min dist val", dist_min)
+                    dist_min = min(dist_min, abs(idx-i))
+                    print("Setting minimum", dist_min)
+            elif (len(nums) < 2 or str(reverse(self, nums[i])) not in str(nums[i])) and dist_min == 100 and i!=0:
+                print("In elif")
+                dist_min = -1
+            elif dist_min == 100 and i!=0:
+                dist_min = -1
+        return dist_min
