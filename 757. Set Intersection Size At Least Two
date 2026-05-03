@@ -1,8 +1,41 @@
 class Solution:
+
+    def pop_match(self, my_intervals: List[List[int]], nums: List[int]):
+        count = 0
+        index = []
+        for i in range(len(my_intervals)):
+            count = 0
+            for j in nums:
+                if my_intervals[i][0]<=j<=my_intervals[i][1]:
+                    count += 1
+                    if count == 2:
+                        index.append(i)
+                        break
+        if len(index) != 0:
+            for k in sorted(index, reverse=True):
+                my_intervals.pop(k)
+
+    def how_many_belongs(self, my_intervals: List[List[int]], integer_at: int) -> int:
+        count = 0
+        for j in range(len(my_intervals)):
+            if my_intervals[j][0]<=integer_at<=my_intervals[j][1]:
+                count += 1
+        return count
+
     def intersectionSizeTwo(self, intervals: List[List[int]]) -> int:
         nums = []
         my_intervals = intervals
         run = 1
+
+        for a in range(len(my_intervals)):
+            if my_intervals[a][1]-my_intervals[a][0]==1:
+                if my_intervals[a][0] not in nums:
+                    nums.append(my_intervals[a][0])
+                if my_intervals[a][1] not in nums:
+                    nums.append(my_intervals[a][1])
+                run = 2
+        if nums:
+            self.pop_match(my_intervals, nums)
 
         while len(my_intervals)!=0:
             min = 10**8
@@ -13,59 +46,45 @@ class Solution:
                 if my_intervals[i][0]<min:
                     min = my_intervals[i][0]
 
-            def how_many_belongs(self, my_intervals: List[List[int]], integer_at: int) -> int:
-                count = 0
-                for j in range(len(my_intervals)):
-                    if my_intervals[j][0]<=integer_at<=my_intervals[j][1]:
-                        count += 1
-                return count
-
             max_count = 0
             max_value = 0
+            max_value_list = []
             count = 0
             for i in range(min, max+1):
-                count = how_many_belongs(self, my_intervals, i)
+                if i not in nums:
+                    count = self.how_many_belongs(my_intervals, i)
+                    if count>max_count:
+                        max_count = count
+                        max_value = i
 
-                if count>max_count and i not in nums:
-                    max_count = count
-                    max_value = i
+            for i in range(min, max+1):
+                if i not in nums:
+                    count = self.how_many_belongs(my_intervals, i)
+                    if count==max_count:
+                        max_value_list.append(i)
+                        print("i: ", i)
 
-
-            if run==1:
+            if run==1 and len(max_value_list)<2:
                 max_count2 = 0
                 max_value2 = 0
                 count2 = 0
                 for i in range(min, max+1):
                     if i!=max_value:
-                        count2 = how_many_belongs(self, my_intervals, i)
+                        count2 = self.how_many_belongs(my_intervals, i)
 
                         if count2>max_count2:
                             max_count2 = count2
-                            max_value2 = i
+                            max_value2 = i  
                 nums.append(max_value2)
+                print("MaxValue2: ", max_value2, " MaxCount2: ", max_count2)
 
-            print("MaxValue: ", max_value, " MaxCount: ", max_count)
-            nums.append(max_value)
+            print("MaxValueList: ", max_value_list, " MaxCount: ", max_count)
+            nums = nums+max_value_list
             print("Num: ", nums)
-            
 
-            def pop_match(self, my_intervals: List[List[int]], nums: List[int]):
-                count = 0
-                index = []
-                for i in range(len(my_intervals)):
-                    count = 0
-                    for j in nums:
-                        if my_intervals[i][0]<=j<=my_intervals[i][1]:
-                            count += 1
-                            if count == 2:
-                                index.append(i)
-                                break
-                if len(index) != 0:
-                    for k in sorted(index, reverse=True):
-                        my_intervals.pop(k)
 
                     
-            pop_match(self, my_intervals, nums)
+            self.pop_match(my_intervals, nums)
 
             print("New MyIntervals: ", my_intervals)
             run +=1
