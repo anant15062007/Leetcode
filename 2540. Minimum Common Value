@@ -1,0 +1,50 @@
+class Solution:
+    def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
+        import bisect
+
+        min1 = nums1[0]
+        max1 = nums1[-1]
+        min2 = nums2[0]
+        max2 = nums2[-1]
+        i = 0
+        j = 0
+
+        if min1>=min2:
+            if max1>=max2:
+                i = min1
+                j = max2
+            else:
+                i = min1
+                j = max1
+        elif min2>=min1:
+            if max1>=max2:
+                i = min2
+                j = max2
+            else:
+                i = min2
+                j = max1
+
+        left_idx1 = bisect.bisect_left(nums1, i)
+        right_idx1 = bisect.bisect_right(nums1, j)
+        nums1 = nums1[left_idx1:right_idx1]
+
+        left_idx2 = bisect.bisect_left(nums2, i)
+        right_idx2 = bisect.bisect_right(nums2, j)
+        nums2 = nums2[left_idx2:right_idx2]
+
+        # if (i, j) not in nums1 or (i, j) not in nums2:
+        #     return -1
+
+
+        if len(nums1)!=0 and len(nums2)!=0:
+            for a in nums1:
+                for b in nums2:
+                    if a==b:
+                        return a
+                    elif a>b:
+                        continue
+                    elif a<b:
+                        break
+            return -1
+        else:
+            return -1
