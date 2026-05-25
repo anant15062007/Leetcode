@@ -1,0 +1,31 @@
+class Solution:
+    def canReach(self, s: str, minJump: int, maxJump: int) -> bool:
+        
+        s_arr = list(s)
+        print(s_arr)
+        index = []
+
+        if s_arr[-1]!="0":
+            return False
+
+        for i in range(len(s_arr)):
+            if s_arr[i]=="0":
+                index.append(i)
+        print(index)
+
+        if len(index)==len(s_arr):
+            return True
+
+        for i in range(len(index)):
+            print("i", i)
+            if i == len(index)-1:
+                return True
+            for j in range(i+1, len(index)):
+                print("j", j)
+                if index[i]+minJump <= index[j] <= min(index[i]+maxJump, len(s_arr)-1):
+                    print("In If")
+                    break
+                else:
+                    print("In Else")
+                    return False
+        
