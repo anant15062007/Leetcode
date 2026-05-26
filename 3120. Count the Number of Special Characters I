@@ -1,0 +1,23 @@
+class Solution:
+    def numberOfSpecialChars(self, word: str) -> int:
+        
+        lower = []
+        upper = []
+        count = 0
+
+        for i in word:
+            if i.isupper():
+                upper.append(i)
+            elif i.islower():
+                lower.append(i)
+            else:
+                return error
+            
+        lowerFinal = list(dict.fromkeys(lower))
+        upperFinal = list(dict.fromkeys(upper))
+        
+        for j in lowerFinal:
+            if j.upper() in upperFinal:
+                count += 1
+
+        return count
