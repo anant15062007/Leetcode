@@ -1,0 +1,27 @@
+class Solution:
+    def leftRightDifference(self, nums: List[int]) -> List[int]:
+        
+        left = []
+        right = []
+        templ = 0
+        tempr = 0
+
+        for i in range(len(nums)):
+            if i == 0:
+                left.append(0)
+                right.append(0)
+                templ = templ + nums[i]
+                left.append(templ)
+                
+            else:
+                templ = templ + nums[i]
+                tempr = tempr + nums[-i]
+                left.append(templ)
+                right.insert(0, tempr)
+
+        print(left)
+        print(right)
+
+        result = [abs(a - b) for a, b in zip(left, right)]
+
+        return result
