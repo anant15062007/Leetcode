@@ -1,0 +1,31 @@
+class Solution:
+    def createBinaryTree(self, descriptions: List[List[int]]) -> Optional[TreeNode]:
+
+        parent = []
+        child = []
+
+        tree = []
+        
+        for i in range(len(descriptions)):
+            parent.append(descriptions[i][0])
+            child.append(descriptions[i][1])
+        
+        total = len(set(parent + child))
+
+        root_list = list(set(parent) - set(child))
+        root = root_list[0]
+        print(root)
+        tree.append(root)
+        
+        i = 0
+        while i!=3:
+            i+=1
+            for j in range(len(descriptions)):
+                if descriptions[j][0] == root and descriptions[j][2] == 1:
+                    tree.append(descriptions[j][1])
+                elif descriptions[j][0] == root and descriptions[j][2] == 0:
+                    tree.append(descriptions[j][1])
+            root = tree[i]
+
+        print(tree)
+        return tree
