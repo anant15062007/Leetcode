@@ -1,0 +1,30 @@
+class Solution:
+    def processStr(self, s: str, k: int) -> str:
+        
+        l = 0
+        for i in s:
+            if i=='*' and l:
+                l -= 1
+            elif i=='#':
+                l*=2
+            elif i=='%':
+                continue
+            elif i.islower():
+                l += 1
+                
+        if k >= l:
+            return "."
+        
+        for i in reversed(s):
+            if i.islower():
+                if k==l-1:
+                    return i
+                l -= 1
+            elif i=='*':
+                l += 1
+            elif i=='#':
+                l//=2
+                if k>=l:
+                    k -= l
+            elif i=='%':
+                k = l - 1 - k
