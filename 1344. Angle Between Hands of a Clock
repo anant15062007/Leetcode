@@ -1,0 +1,10 @@
+class Solution:
+    def angleClock(self, hour: int, minutes: int) -> float:
+        
+        hourDegree = 30*hour + minutes/2
+        minutesDegree = 6*minutes
+        
+        if abs(hourDegree - minutesDegree) > 180:
+            return 360 - abs(hourDegree - minutesDegree)
+        else:
+            return abs(hourDegree - minutesDegree)
