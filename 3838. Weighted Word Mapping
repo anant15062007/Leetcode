@@ -1,0 +1,15 @@
+import string
+class Solution:
+    def mapWordWeights(self, words: List[str], weights: List[int]) -> str:
+        
+        val = 0
+        word = []
+
+        for i in words:
+            for j in i:
+                index = ord(j) - ord('a')
+                val = val + weights[index]
+            val = 25 - val%26
+            word.append(string.ascii_lowercase[val])
+            val = 0
+        return "".join(word)
