@@ -1,12 +1,11 @@
 class Solution:
     def countMajoritySubarrays(self, nums: List[int], target: int) -> int:
-        
-        count = 0
-        for i in range(0, len(nums)):
-            for j in range(i, len(nums)):
-                # print(i, "-", j)
-                # print(nums[i:j+1].count(target), j-i)
-                
-                if nums[i:j+1].count(target) > (j-i+1)/2:
-                    count += 1
-        return count
+        n = len(nums)
+        ans = 0
+        for i in range(n):
+            cnt = 0
+            for j in range(i, n):
+                cnt += 1 if nums[j] == target else -1
+                if cnt > 0:
+                    ans += 1
+        return ans
