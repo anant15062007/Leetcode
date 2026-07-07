@@ -1,0 +1,23 @@
+class Solution:
+    def sumAndMultiply(self, n: int) -> int:
+
+        nstr = str(n)
+        num = []
+        number = 0
+        total = 0
+        
+        for i in nstr:
+            if i != "0":
+                num.append(i)
+        
+        print(num)
+
+        length = len(num) - 1
+
+        for j in range(length+1):
+            number = number + (int(num[j]))*(10**length)
+            print(number)
+            total = total + int(num[j])
+            length = length - 1
+        
+        return number*total
