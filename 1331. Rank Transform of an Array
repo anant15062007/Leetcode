@@ -1,0 +1,15 @@
+class Solution:
+    def arrayRankTransform(self, arr: List[int]) -> List[int]:
+        
+        order = []
+        newarr = arr.copy()
+        newarr = list(set(newarr))
+        newarr.insert(0, -100000000000000000)
+        newarr.sort()
+        # print(arr)
+        # print(newarr)
+
+        for i in arr:
+            order.append(newarr.index(i))
+
+        return order
