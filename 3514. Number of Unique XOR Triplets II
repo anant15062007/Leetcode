@@ -1,0 +1,16 @@
+class Solution:
+    def uniqueXorTriplets(self, nums: List[int]) -> int:
+        
+        n = len(nums)
+        seen = set()
+        result = set()
+
+        for i in range(n):
+            for j in range(i,n):
+                seen.add(nums[i]^nums[j])
+
+        for i in range(n):
+            for j in seen:
+                result.add(nums[i]^j)
+
+        return len(result)
