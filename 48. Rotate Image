@@ -1,3 +1,4 @@
+############################################################################    Python    ################################################################################
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         """
@@ -11,3 +12,31 @@ class Solution:
 
         for i in range(n):
             matrix[i].reverse()
+
+
+############################################################################    Java    ################################################################################
+import java.util.*;
+
+class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[][] arr = new int[n][n];
+        int[][] newarr = new int[n][n];
+       
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                arr[i][j] = scanner.nextInt();
+                newarr[j][n-1-i] = arr[i][j];
+            }
+        }
+        System.out.println("Rotated 2D Array: ");
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                System.out.print(newarr[i][j]);
+            }
+            System.out.println();
+        }
+       
+    }
+}
