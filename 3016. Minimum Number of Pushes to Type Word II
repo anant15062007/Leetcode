@@ -1,0 +1,25 @@
+class Solution:
+    def minimumPushes(self, word: str) -> int:
+        
+        chars = []
+        nums = []
+
+        count = 0
+
+        for i in word:
+            if i not in chars:
+                chars.append(i)
+                nums.append(1)
+            else:
+                nums[chars.index(i)] += 1
+
+        nums = sorted(nums, reverse=True)
+
+        if len(nums)<=8:
+            return sum(nums)
+        elif 8 < len(nums) <= 16: 
+            return sum(nums[0:8]) + sum(nums[8:16]) * 2 
+        elif 16 < len(nums) <= 24: 
+            return sum(nums[0:8]) + sum(nums[8:16]) * 2 + sum(nums[16:24]) * 3
+        else:
+            return sum(nums[0:8]) + sum(nums[8:16]) * 2 + sum(nums[16:24]) * 3 + sum(nums[24:]) * 4
