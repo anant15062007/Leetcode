@@ -1,0 +1,22 @@
+class Solution:
+    def minimumDeletions(self, nums: List[int]) -> int:
+        
+        maxnum, x = -1000, 0
+        minnum, y = 1000, 0
+        length = len(nums)
+
+        for i in range(len(nums)):
+            if nums[i]>=maxnum:
+                maxnum = nums[i]
+                x = i
+            if nums[i]<=minnum:
+                minnum = nums[i]
+                y = i
+        
+        big = max(x,y)
+        small = min(x,y)
+
+        if length!=2:
+            return min(length-big + small+1, big+1, length-small)
+        else:
+            return 2
